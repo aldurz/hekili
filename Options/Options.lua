@@ -328,6 +328,7 @@ local displayTemplate = {
         type = "__NA",
         fade = false,
         extend = true,
+        showCooldown = true,
         elvuiCooldowns = false,
 
         font = ElvUI and 'PT Sans Narrow' or 'Arial Narrow',
@@ -2824,6 +2825,14 @@ return "Position" end,
                             "communicate that there is a delay.",
                         order = 11,
                         args = {
+                            showCooldown = {
+                                type = "toggle",
+                                name = "Show cooldown",
+                                desc = "If checked, icon's cooldown will be shown. For example, via a spiral",
+                                width = 1.49,
+                                order = 0.99,
+                            },
+
                             extend = {
                                 type = "toggle",
                                 name = "Extend Spiral",

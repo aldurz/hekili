@@ -1729,6 +1729,11 @@ do
                         modRate = 1
                     end
 
+                    if not conf.delays.showCooldown then
+                        start = 0
+                        duration = 0
+                    end
+
                     if cd.lastStart ~= start or cd.lastDuration ~= duration then
                         cd:SetCooldown( start, duration, modRate )
                         cd.lastStart = start
