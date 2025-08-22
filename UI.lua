@@ -1143,6 +1143,16 @@ do
 
             local now = GetTime()
 
+            -- Hide all icons if GCD exceeds threshold
+            local gcdStart, gcdDuration = GetSpellCooldown(61304)
+            local gcdRemaining = gcdStart + gcdDuration - now
+            local RECOMMENDATION_HIDE_THRESHOLD = 0.6 -- seconds, adjust as needed
+            if gcdDuration and gcdRemaining > RECOMMENDATION_HIDE_THRESHOLD then
+                for i, b in ipairs(self.Buttons) do b:Hide() end
+                self.HasRecommendations = false
+                return
+            end
+
             if self.NewRecommendations then
                 self.NewRecommendations = nil
                 madeUpdate = true
@@ -1170,10 +1180,27 @@ do
                         local exact_time = b.Recommendation.exact_time
 
                         local ability = class.abilities[ action ]
+                        local ability_ready = true
 
                         if ability and ability.id < 0 and ability.id > -100 and action ~= "cancel_buff" or exact_time == nil then ability = nil end
 
                         if ability then
+                            -- Hide button if its cooldown exceeds threshold
+                            local cdStart, cdDuration
+                            if ability.item then
+                                cdStart, cdDuration = _G.C_Container.GetItemCooldown( ability.item )
+                            else
+                                cdStart, cdDuration = GetSpellCooldown( ability.id )
+                            end
+
+                            local cdRemaining = (cdStart or 0) + (cdDuration or 0) - now
+                            if cdDuration and cdRemaining > RECOMMENDATION_HIDE_THRESHOLD then
+                                b:Hide()
+                                ability_ready = false
+                            end
+                        end
+
+                        if ability and ability_ready then
                             if ( conf.flash.enabled and conf.flash.suppress ) then b:Hide()
                             else b:Show() end
 
