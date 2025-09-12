@@ -47,9 +47,12 @@ actions.ar+=/immolation_aura,if=talent.fallout
 actions.ar+=/bulk_extraction,if=active_enemies>=3
 actions.ar+=/shear,if=talent.fracture&buff.metamorphosis.up
 actions.ar+=/sigil_of_flame
-actions.ar+=/shear,if=talent.fracture
+# My change. Only prio shear if at max charges, or not capped on fury
+actions.ar+=/shear,if=talent.fracture&action.shear.charges_fractional>=2
+actions.ar+=/shear,if=talent.fracture&fury.deficit>=25
 actions.ar+=/spirit_bomb,if=active_enemies>=12&soul_fragments.active>=4
 actions.ar+=/soul_cleave
+actions.ar+=/shear,if=talent.fracture
 actions.ar+=/immolation_aura
 actions.ar+=/felblade
 actions.ar+=/vengeful_retreat,if=talent.unhindered_assault

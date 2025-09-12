@@ -11,20 +11,26 @@ set -b
 
 echo "##### Syncing changes to RETAIL addon"
 
-echo "##### Removing original core/ui/options"
+echo "##### Removing original files"
 rm /Applications/World\ of\ Warcraft/_retail_/Interface/AddOns/Hekili/Core.lua
 rm /Applications/World\ of\ Warcraft/_retail_/Interface/AddOns/Hekili/UI.lua
 rm /Applications/World\ of\ Warcraft/_retail_/Interface/AddOns/Hekili/Options/Options.lua
+rm /Applications/World\ of\ Warcraft/_retail_/Interface/AddOns/Hekili/TheWarWithin/DemonHunterVengeance.lua
+rm /Applications/World\ of\ Warcraft/_retail_/Interface/AddOns/Hekili/TheWarWithin/Priorities/DemonHunterVengeance.simc
 
 echo "##### Copying over my modified versions of core/ui/options"
 cp Core.lua /Applications/World\ of\ Warcraft/_retail_/Interface/AddOns/Hekili/
 cp UI.lua /Applications/World\ of\ Warcraft/_retail_/Interface/AddOns/Hekili/
 cp Options/Options.lua /Applications/World\ of\ Warcraft/_retail_/Interface/AddOns/Hekili/Options/
+cp TheWarWithin/DemonHunterVengeance.lua /Applications/World\ of\ Warcraft/_retail_/Interface/AddOns/Hekili/TheWarWithin/DemonHunterVengeance.lua
+cp TheWarWithin/Priorities/DemonHunterVengeance.simc /Applications/World\ of\ Warcraft/_retail_/Interface/AddOns/Hekili/TheWarWithin/Priorities/DemonHunterVengeance.simc
 
 echo "##### Diffing copied files. Should see 0 diffs"
 diff Core.lua /Applications/World\ of\ Warcraft/_retail_/Interface/AddOns/Hekili/Core.lua
 diff UI.lua /Applications/World\ of\ Warcraft/_retail_/Interface/AddOns/Hekili/UI.lua
 diff Options/Options.lua /Applications/World\ of\ Warcraft/_retail_/Interface/AddOns/Hekili/Options/Options.lua
+diff TheWarWithin/DemonHunterVengeance.lua /Applications/World\ of\ Warcraft/_retail_/Interface/AddOns/Hekili/TheWarWithin/DemonHunterVengeance.lua
+diff TheWarWithin/Priorities/DemonHunterVengeance.simc /Applications/World\ of\ Warcraft/_retail_/Interface/AddOns/Hekili/TheWarWithin/Priorities/DemonHunterVengeance.simc
 
 echo "##### No diffs found. Success! Diffing entire dir as sanity-check. Expect to see some diffs here, esp for dotfiles and 3rd party libs"
 diff -bur . /Applications/World\ of\ Warcraft/_retail_/Interface/AddOns/Hekili
