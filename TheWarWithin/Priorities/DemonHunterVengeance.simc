@@ -47,9 +47,8 @@ actions.ar+=/immolation_aura,if=talent.fallout
 actions.ar+=/bulk_extraction,if=active_enemies>=3
 actions.ar+=/shear,if=talent.fracture&buff.metamorphosis.up
 actions.ar+=/sigil_of_flame
-# My change. Only prio shear if at max charges, or not capped on fury
-actions.ar+=/shear,if=talent.fracture&action.shear.charges_fractional>=2
-actions.ar+=/shear,if=talent.fracture&fury.deficit>=25
+# My change. Only prio shear if about to cap charges. Otherwise, consume fury, to avoid capping fury
+actions.ar+=/shear,if=talent.fracture&action.shear.charges_fractional>=1.5
 actions.ar+=/spirit_bomb,if=active_enemies>=12&soul_fragments.active>=4
 actions.ar+=/soul_cleave
 actions.ar+=/shear,if=talent.fracture
