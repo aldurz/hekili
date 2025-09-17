@@ -29,14 +29,10 @@ actions.ar+=/potion,use_off_gcd=1,if=(buff.rending_strike.up&buff.glaive_flurry.
 ## actions.ar+=/call_action_list,name=externals,if=(buff.rending_strike.up&buff.glaive_flurry.up)|prev_gcd.1.reavers_glaive
 actions.ar+=/metamorphosis,use_off_gcd=1,if=!buff.metamorphosis.up
 actions.ar+=/fel_devastation,use_off_gcd=1,if=!buff.rending_strike.up&!buff.glaive_flurry.up
-# Always Soul Cleave if Rending Strike isn't up and Glaive Flurry is
+# My change for 11.2 4p tier: always fracture first after reaver's glaive
+actions.ar+=/shear,if=buff.rending_strike.up
+# Soul cleave after shear when reaver's glaive enhancement is up
 actions.ar+=/soul_cleave,if=!buff.rending_strike.up&buff.glaive_flurry.up
-# If Soul Cleave and Rending Strike are up in single target, spend Soul Cleave first then we can Fracture
-actions.ar+=/soul_cleave,if=variable.single_target&buff.rending_strike.up&buff.glaive_flurry.up
-# Spend Rending Strike or generate Fury for empowered Soul Cleave
-actions.ar+=/shear,if=talent.fracture&buff.glaive_flurry.up
-# Spend Rending Strike or generate Fury for empowered Soul Cleave
-actions.ar+=/shear,if=!talent.fracture&buff.glaive_flurry.up
 actions.ar+=/reavers_glaive,if=!buff.rending_strike.up&!buff.glaive_flurry.up
 actions.ar+=/the_hunt,if=!buff.reavers_glaive.up&(buff.art_of_the_glaive.stack+soul_fragments.total)<20
 actions.ar+=/fiery_brand,if=talent.fiery_demise&!dot.fiery_brand.ticking
